@@ -87,4 +87,4 @@ DEGEF generates a number of output files in the user-specified output directory:
 -->
 
 # Attributions
-KIRCLE is developed and maintained by Galen Gao (gaogf [at] nih [period] gov) -- Laboratory of Molecular Immunology -- National Heart Lung and Blood Institute (NHLBI), National Institutes of Health (NIH), Bethesda, MD.
+KIRCLE is developed and maintained by Galen Gao -- Laboratory of Molecular Immunology -- National Heart Lung and Blood Institute (NHLBI), National Institutes of Health (NIH), Bethesda, MD.
