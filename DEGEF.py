@@ -328,7 +328,7 @@ def visualize_results(df_ref, df_rs, df_es, df_pk, c, chrSize, direction="up", \
     # pick out parts of input files relevant to the chromosome c    
     df_in = df_ref[df_ref["Chr"] == c]
     df_rs_c = df_rs[df_rs.index.str.split(":").str[0] == c]
-    df_es_c = df_es[df_es.index == c]
+    df_es_c = df_es[df_es.index == c].copy()
     df_pk_c = df_pk[df_pk.index.str.split(":").str[0] == c]
     
     # plotting parameters
@@ -582,8 +582,7 @@ def visualize_enrichment_score(df_ref, c, direction="up", metric="count", \
                       direction=direction, fdrThresh=fdrThresh, )
     
 # global variables
-mainChrs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", \
-            "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X"]
+mainChrs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
 if __name__ == "__main__":
     
