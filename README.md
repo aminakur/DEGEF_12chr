@@ -1,3 +1,8 @@
+# IN THIS FORK
+1. DEGEF.py was modified for n=12 genomes;
+2. Fixed the warning triggered by df_es_c being a view not a copy of df_es;
+3. Input file requirements included.
+   
 # DEGEF
 Differentially Expressed Gene Expression Finder (DEGEF) discovers genomic regions of enriched differential gene expression from differential gene expression results.
 
