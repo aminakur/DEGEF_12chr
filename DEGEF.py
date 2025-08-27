@@ -38,12 +38,11 @@ def load_data(fnDEG, fnRef, entrez=False):
     genes, reference."""
     # read in differentially expressed genes
     df_deg = pd.read_table(fnDEG, index_col=0)
-    if entrez: # only focus on genes w/an entrezID (20232 -> 15556)
-        df_deg = df_deg[~df_deg["ENTREZID"].isnull()]
+    df_deg['SYMBOL'] = df_deg.index
     
     # read in gene locus mapping
     df_ref = pd.read_table(fnRef, index_col=0)
-    df_ref = df_ref.join(df_deg[["SYMBOL", "logFC", "P.Value", "adj.P.Val"]], \
+    df_ref = df_ref.join(df_deg[[ "SYMBOL", "logFC", "P.Value", "adj.P.Val"]], \
                          how="inner")
 
     return df_ref
@@ -77,7 +76,7 @@ def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58)
         degs = df_de[(df_de["adj.P.Val"]<=p) & (np.abs(df_de["logFC"])>=logFC)].index
         dirGs = df_de[np.abs(df_de["logFC"]) > 0].index
 
-    newIdx = [r["Chr"] + ":" + str(int(r["TSS"])) for i,r in df_de.iterrows()]
+    newIdx = [str(r["Chr"]) + ":" + str(int(r["TSS"])) for i,r in df_de.iterrows()]
 
     # depending on the metric being used, compute raw score from differential
     # expression results
@@ -328,7 +327,7 @@ def visualize_results(df_ref, df_rs, df_es, df_pk, c, chrSize, direction="up", \
     # pick out parts of input files relevant to the chromosome c    
     df_in = df_ref[df_ref["Chr"] == c]
     df_rs_c = df_rs[df_rs.index.str.split(":").str[0] == c]
-    df_es_c = df_es[df_es.index == c].copy()
+    df_es_c = df_es[df_es.index == c]
     df_pk_c = df_pk[df_pk.index.str.split(":").str[0] == c]
     
     # plotting parameters
