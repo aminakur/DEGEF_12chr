@@ -38,6 +38,8 @@ Details of implementation are included in our manuscript "Co-localization of Clu
 
 # Usage
 
+### Input files generation - DEGEF_input_files.ipynb
+
 ### Running DEGEF in Python
 
 After adding the pulled directory to PYTHONPATH, run the following:
@@ -55,7 +57,7 @@ peakGenesTot, peakSigsTot = DEGEF.run_enrichment_finder(filename, fnRef, fnSize,
 
 
 
-### Running DEGEF from the Command Line
+### Running DEGEF from the Command Line - recommended
 After generating a differential gene expression results table using differential expression analysis software (e.g., limma-voom, DESeq2, etc.), run the following:
 
 ```
