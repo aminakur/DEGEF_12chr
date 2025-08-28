@@ -38,14 +38,13 @@ def load_data(fnDEG, fnRef, entrez=False):
     genes, reference."""
     # read in differentially expressed genes
     df_deg = pd.read_table(fnDEG, index_col=0)
-    if entrez: # only focus on genes w/an entrezID (20232 -> 15556)
-        df_deg = df_deg[~df_deg["ENTREZID"].isnull()]
-    
+    df_deg['SYMBOL'] = df_deg.index
     # read in gene locus mapping
     df_ref = pd.read_table(fnRef, index_col=0)
+    df_ref["Chr"] = df_ref["Chr"].astype(str)  # Convert to str to avoid type mismatch in filtering
     df_ref = df_ref.join(df_deg[["SYMBOL", "logFC", "P.Value", "adj.P.Val"]], \
                          how="inner")
-
+    
     return df_ref
 
 def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58):
@@ -64,7 +63,7 @@ def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58)
     
     # make sure df_de is sorted the way we want: 1st by chr and then by TSS
     df_de = df_de.sort_values(["Chr", "TSS"])
-    
+
     # degs will be used if metric == "count"; dirGs will be used if 
     # metric == "significance" or "foldchange"
     if direction == "up":
@@ -77,7 +76,7 @@ def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58)
         degs = df_de[(df_de["adj.P.Val"]<=p) & (np.abs(df_de["logFC"])>=logFC)].index
         dirGs = df_de[np.abs(df_de["logFC"]) > 0].index
 
-    newIdx = [r["Chr"] + ":" + str(int(r["TSS"])) for i,r in df_de.iterrows()]
+    newIdx = [str(r["Chr"]) + ":" + str(int(r["TSS"])) for i,r in df_de.iterrows()]
 
     # depending on the metric being used, compute raw score from differential
     # expression results
@@ -582,8 +581,7 @@ def visualize_enrichment_score(df_ref, c, direction="up", metric="count", \
                       direction=direction, fdrThresh=fdrThresh, )
     
 # global variables
-mainChrs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", \
-            "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X"]
+mainChrs = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
 if __name__ == "__main__":
     
