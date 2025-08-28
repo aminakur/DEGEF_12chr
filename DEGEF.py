@@ -39,12 +39,12 @@ def load_data(fnDEG, fnRef, entrez=False):
     # read in differentially expressed genes
     df_deg = pd.read_table(fnDEG, index_col=0)
     df_deg['SYMBOL'] = df_deg.index
-    
     # read in gene locus mapping
     df_ref = pd.read_table(fnRef, index_col=0)
-    df_ref = df_ref.join(df_deg[[ "SYMBOL", "logFC", "P.Value", "adj.P.Val"]], \
+    df_ref["Chr"] = df_ref["Chr"].astype(str)  # Convert to str to avoid type mismatch in filtering
+    df_ref = df_ref.join(df_deg[["SYMBOL", "logFC", "P.Value", "adj.P.Val"]], \
                          how="inner")
-
+    
     return df_ref
 
 def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58):
@@ -63,7 +63,7 @@ def compute_raw_score(df_de, direction="up", metric="count", p=0.05, logFC=0.58)
     
     # make sure df_de is sorted the way we want: 1st by chr and then by TSS
     df_de = df_de.sort_values(["Chr", "TSS"])
-    
+
     # degs will be used if metric == "count"; dirGs will be used if 
     # metric == "significance" or "foldchange"
     if direction == "up":
