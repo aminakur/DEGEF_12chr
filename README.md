@@ -40,22 +40,11 @@ Details of implementation are included in our manuscript "Co-localization of Clu
 
 ### Input files generation - DEGEF_input_files.ipynb
 
-### Running DEGEF in Python
-
-After adding the pulled directory to PYTHONPATH, run the following:
+### Activate virtual environment
 
 ```
-import DEGEF
-
-peakGenesTot, peakSigsTot = DEGEF.run_enrichment_finder(filename, fnRef, fnSize, \
-	                                direction=direction, metric=metric, p=p,\
-	                                logFC=logFC, maxWindow=maxGeneInWindow, \
-	                                nboot=nboot,windowSize=windowSize, \
-	                                stepSize=stepSize, writeToDisk=True, \
-	                                outDirName=outDirName)
+source /DEGEF/venv/bin/activate
 ```
-
-
 
 ### Running DEGEF from the Command Line - recommended
 After generating a differential gene expression results table using differential expression analysis software (e.g., limma-voom, DESeq2, etc.), run the following:
