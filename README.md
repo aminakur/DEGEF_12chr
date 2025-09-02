@@ -38,9 +38,9 @@ Details of implementation are included in our manuscript "Co-localization of Clu
 
 # Usage
 
-### Input files generation - DEGEF_input_files.ipynb
+### 1. Generate input files - see DEGEF_input_files.ipynb
 
-### Create and activate virtual environment
+### 2. Create and activate virtual environment
 
 ```
 cd DEGEF/
@@ -49,7 +49,7 @@ pip install argparse numpy pandas random scipy statsmodels matplotlib
 source /DEGEF/venv/bin/activate
 ```
 
-### Running DEGEF from the Command Line - recommended
+### 3. Run DEGEF from the Command Line
 After generating a differential gene expression results table using differential expression analysis software (e.g., limma-voom, DESeq2, etc.), run the following:
 
 ```
