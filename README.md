@@ -40,9 +40,12 @@ Details of implementation are included in our manuscript "Co-localization of Clu
 
 ### Input files generation - DEGEF_input_files.ipynb
 
-### Activate virtual environment
+### Create and activate virtual environment
 
 ```
+cd DEGEF/
+python3 -m venv venv
+pip install argparse numpy pandas random scipy statsmodels matplotlib
 source /DEGEF/venv/bin/activate
 ```
 
