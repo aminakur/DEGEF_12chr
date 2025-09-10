@@ -49,7 +49,7 @@ pip install argparse numpy pandas random scipy statsmodels matplotlib
 ```
 
 ```
-source /DEGEF/venv/bin/activate
+source DEGEF/venv/bin/activate
 ```
 
 ### 3. Run DEGEF from the Command Line
