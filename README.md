@@ -46,6 +46,9 @@ Details of implementation are included in our manuscript "Co-localization of Clu
 cd DEGEF/
 python3 -m venv venv
 pip install argparse numpy pandas random scipy statsmodels matplotlib
+```
+
+```
 source /DEGEF/venv/bin/activate
 ```
 
